@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{mathtools}
 \title{Real Analysis}
 \author{Ayush}
 \date{Feburary 2023 - May 2023}
@@ -8,11 +9,88 @@
 
 \section*{Introduction}
 \subsection*{Analysis}
-Real Analysis: The analysis of real numbers and real-valued functions.
-Complex Analysis: Concerns the analysis of complex numbers & complex functions.
-Harmonic Analysis: Concerns the analysis of Harmonics (Waves) sine waves and how they synthesize other functions by Fourier Transform.
-Functional Analysis: Focuses much more heavily on functions (on how they form things like vector spaces)
+\begin{itemize}
+      \item
+            Real Analysis: The analysis of real numbers and real-valued functions.
+            \\
+      \item
+            Complex Analysis: Concerns the analysis of complex numbers and complex functions.
+            \\
+      \item
+            Harmonic Analysis: Concerns the analysis of Harmonics (Waves) sine waves and how they synthesize other functions by Fourier Transform.
+            \\
+      \item
+            Functional Analysis: Focuses much more heavily on functions (on how they form things like vector spaces)
+            \\\\
+            Real Analysis is the theoretical foundation that underlines $calculus$, which is the collection of computational algorithms that one uses to manipulate functions.
 
-Real Analysis is the theoretical foundation underlines $calculus$, which is the collection of computational algorithms which one uses to manipulate functions.
-
+\end{itemize}
+\subsection*{Why do analysis?}
+One might how to do the computation but if applied blindly can lead to disasters.
+\\\\
+Example 1: $$S = 1  + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16}$$
+\\ then on multiplying both sides by 2 we get
+\\
+$$2S = 2+ 1  + \frac{1}{2} + \frac{1}{4} + \frac{1}{8} + \frac{1}{16} + ....=2+S$$
+therefore S = 2
+\\On applying the same thing on the series $$S=1+2+4+8+16$$
+$$2S=2+4+8+16+...=S-1$$
+which gives S = -1
+which is obv wrong.
+\\Why is it that the same reasoning valid for $$1 + \frac{1}{2}+\frac{1}{4}+...=2$$ but not for $$1+2+4+8+...=-1$$
+A similar Example can be $$S=1-1+1-1+1-1+...$$
+this can be written as $$S=1-(1+1-1+1-1+...)=1-S$$
+hence S = 1/2 ; or instead we can write
+$$S=(1-1)+(1-1)+(1-1)+...=0+0+..=0$$
+or $$S=1+(-1+1)+(-1+1)+(-1+1)+...=1+0+0+...$$
+hence S = 1
+\\Which one is correct?
+\\\\
+Example 2:
+\\Let $x$ be a real number and L be the limit
+$$L=\lim_{n\to{\infty}}x^{n}$$
+changing n to m + 1 we have
+$$L=\lim_{m+1\to{\infty}}x^{m+1} =\lim_{m+1\to{\infty}}x^{m}.x=x.\lim_{m+1\to{\infty}}x^{m}$$
+$$L=\lim_{m+1\to{\infty}}x^{m}=\lim_{m\to{\infty}}x^{m}=\lim_{n\to{\infty}}x^{n}=L$$
+and thus $xL = L$
+\\
+by canceling $x$ one might conclude that x = 1 for an arbritary number $x$ which is absurd.
+But since we know that let's say we have 1 X 0 = 2 X 0 , one cannot cancel 0 to conclude 1 = 2 so division by 0 is a problem.
+Therefore in this case one can conclude that either $x$ = 1 or $L$ = 0
+We seem to have shown that $$\lim_{n\to{\infty}}x^{n}=0$$ for all $x$ not equal to 1
+\\But this is somewhat wrong as we can by specailizing the case x = 2 or x = -1 show that the sequence then form does converge to 0
+\\What is wrong with the above argument?
+\\for more examples refer to Example 1.2.4 - 1.2.13
+\section*{Natural Number}
+\subsection*{The Peano axioms}
+\underline{Axiom 1}.\emph{0 is a natural number.}
+\\\underline{Axiom 2}. \emph{If n is a natural number then n++ is also a natural number.}
+\\\\On applying Axiom 1 and 2 see that (0++)++ (which is basically increment by one) is also a natural number
+\\We define 1 to be the number 0++, 2 to be the number (0++)++ and so on.
+\\ Are these enough to define natural numbers?
+\\Problem 1: There can exist a number system with the number 0,1,2,3 in which the increment operator wraps back from 3 to 0.
+\\Therefore such number systems although obeys Axiom 1 and 2 does not correspond to what we believe the natural numbers to be like.
+To prevent this wrap-around issue.
+\\\\
+\underline{Axiom 3}. \emph{0 is not the successor of any number;i.e., we have n++ not equal to 0 for evey natural number n.}
+\\\\ Are these enough to define natural numbers?
+\\Problem 2: The number system still consists of the same numbers 0,1,2,3 and after 3++ it still wraps-around but wraps around 2 or 3. So we have 0++ = 1, 1++ = 2, 2 ++ =3, 3 ++ = 3 (So 4 = 3, 5 = 3, etc.)
+\\\\
+\underline{Axiom 4}. \emph{Different natural numbers must have different successors; i.e., if n, m are different natural numbers then n++ is not equal to m++. Equivalently, if n++ = m++, then we must have n = m.}
+\\\\Are these enough to define natural numbers?
+\\Problem 3: Suppose that our number system $N$ consists of $$N = 0,0.5,1,1.5,2,...$$
+$N$ still follows axiom 1-4
+\\\\
+\underline{Axiom 5}. \emph{(Principle of Mathematical Induction). Let P(n) be any property pertaining to a natural number n. Suppose that P(0) is true, and suppose  that whenever P(n) is true, P(n++) is also true. Then P(n) is true for every natural number n.}
+\\\\Now since P(0) is true P(0++) = P(1) is true and so on .... by induction. However the line of reasoning will never let us conclude that P(0) is true. Axiom 5 shoud not hold for number systems which have elements like 0.5. This also shows that 0.5 is not a natural number ( according to definition below).
+\\This "property" can be anything like "n is even", "n is equal to 3", "n solves the equation $(n+1)^{2}=n^{2}+2n+1$"
+\\Axioms 1-5 are known as \emph{Peano axioms} for the natural numubers
+\\\\
+\underline{Assumption: }\emph{There exists a number system $N$, whose elements we will call} natural numbers, \emph{for which Axioms 1-5 are true}
+\\\\The realization that numbers can be treated axiomatically is not more than a hundred years ols. Before then, numbers were generally understood to be inextricably connected to some external concept, such as conting the cardinality of the set, measuring length of a line segment, or the mass of a physical body, etc. The worked well until other numbers systems came into the game. Enter: $C,irrrationals.$
+eg.Understanding numbers in terms of conunting beads is great for conceptualizing the number 3 or 5 but dont work for let's say complex numbers and hence caused a lot of philosophical anguish at their time of discovery.
+\\\\The great discovery of the late nineteenth centuary was that numebrs can be understood abstractly via axioms, without necessarily needing a concrete model; of coures a mathematician can use many of these models when it is convenient, to aid his intution and understanding, but they can also be just easily discarded when they begin to get in the way.
+\\(recursive: relating toor involving the repeted application of a rule definition, or procedure to \underline{successive} results.)
+\\One  consequence of the axioms is that we can now define sequences recursively.
+\\\\Proposition: (Recursive definition). \emph{Suppose for each natural number n, we have some function $f_{n}:N\rightarrow N$ from the natural number to the natural number. Then we can assign a unique natural number $a_{n}$ to each natural number n, such that $a_{0}$ = c and $a_{n++}=f_{n}(a_{n})$ for each natural number n.}
 \end{document}
